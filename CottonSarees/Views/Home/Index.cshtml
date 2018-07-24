@@ -1,31 +1,790 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@{
+    Layout = null;
 }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/css/AngGridPicture.css" rel="stylesheet" />
+    <!--<link rel="stylesheet" type="text/css" href="./AngGridPicture.css">-->
+    <style type="text/css">
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+        /* 1. Header */
+        .header {
+            padding: 10px;
+            text-align: center;
+            background-color: #e5e5e5;
+        }
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        /* 2. Footer */
+        .footer {
+            padding: 10px;
+            position: fixed;
+            bottom: 0px;
+            left: 0px;
+            right: 0px;
+            margin-bottom: 0px;
+            text-align: center;
+            background-color: #e5e5e5;
+        }
+
+        /* 3. Left side content */
+        .leftsidecontent {
+            float: left;
+            overflow: auto;
+            width: 20%;
+            text-align: center;
+            /*background-color: #e5e5e5;*/
+        }
+
+        .menuitem {
+            background-color: #e5e5e5;
+            padding: 8px;
+            margin-top: 7px;
+            height: 35px;
+        }
+
+        .leftsidecontent-about {
+            background-color: #e5e5e5;
+            padding: 8px;
+            margin-top: 7px;
+            margin-bottom: 7px;
+        }
+
+        .leftsidecontent-contact {
+            background-color: #e5e5e5;
+            padding: 8px;
+            margin-top: 7px;
+            margin-bottom: 7px;
+        }
+
+
+
+        /* 4. Main content (center) */
+        .maincontent {
+            float: left;
+            overflow: auto;
+            width: 80%;
+            padding: 0 20px;
+        }
+
+        /* 5. Right side content */
+        .rightsidecontent {
+            float: left;
+            overflow: auto;
+            width: 20%;
+            margin-top: 7px;
+            text-align: center;
+            background-color: #e5e5e5;
+        }
+
+
+
+        .pagination-picture {
+            display: inline-block;
+            padding-left: 0;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+
+
+        .letter-box {
+            margin-bottom: 5px;
+            box-shadow: 3px 3px 2px #ddd;
+            padding: 20px;
+            width: 175px;
+            height: 235px;
+        }
+
+        .left {
+            float: left;
+            padding: 0 10px 0 0;
+        }
+
+        td img {
+            /*min-width:100%;*/
+            width: 100%;
+            /*max-width: 100%;*/
+            /*max-height:100%;
+            min-height:100%;*/
+            height: 100%;
+        }
+
+        .dialogdemoBasicUsage #popupContainer {
+            position: relative;
+        }
+
+        .dialogdemoBasicUsage .footer {
+            width: 100%;
+            text-align: center;
+            margin-left: 20px;
+        }
+
+            .dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+                font-size: 0.8em;
+                margin-top: 50px;
+            }
+
+        .dialogdemoBasicUsage button {
+            width: 200px;
+        }
+
+        .dialogdemoBasicUsage div#status {
+            color: #c60008;
+        }
+
+        .dialogdemoBasicUsage .dialog-demo-prerendered md-checkbox {
+            margin-bottom: 0;
+        }
+
+
+        #tblSaree tr {
+            background-color: #e5e5e5;
+        }
+
+            #tblSaree tr td:hover {
+                background-color: Red;
+            }
+    </style>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.7/angular-material.css">
+    <link rel="stylesheet" type="text/css" href="https://material.angularjs.org/1.1.7/docs.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,400italic">
+
+
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-route.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-aria.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-messages.min.js"></script>
+    <script type="text/javascript" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
+    <script type="text/javascript" src="https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.7/angular-material.js"></script>
+
+    <script src="~/Scripts/js/AngGrid.js"></script>
+    <!--<script type="text/javascript" src="./AngGrid.js"></script>-->
+
+    <script type="text/javascript">
+
+        //Demo of Searching Sorting and Pagination of Table with AngularJS - Advance Example
+
+        var myApp = angular.module('myApp', ['ngMaterial', 'ngMessages', 'material.svgAssetsCache']);
+
+
+        //Not Necessary to Create Service, Same can be done in COntroller also as method like add() method
+        myApp.service('filteredListService', function () {
+
+            this.searched = function (valLists, toSearch) {
+                return _.filter(valLists,
+
+                    function (i) {
+                        /* Search Text in all 3 fields */
+                        return searchUtil(i, toSearch);
+                    });
+            };
+
+            this.paged = function (valLists, rowsPerPage, itemsPerRow) {
+                retVal = [];
+                valLists = listToMatrix(valLists, itemsPerRow);
+                //valLists[0].IsFirstItemOfRow = true;
+                for (var i = 0; i < valLists.length; i++) {
+                    if (i % rowsPerPage === 0) {
+                        retVal[Math.floor(i / rowsPerPage)] = [valLists[i]];
+                    } else {
+                        retVal[Math.floor(i / rowsPerPage)].push(valLists[i]);
+                    }
+
+                }
+                return retVal;
+            };
+
+        });
+
+        function listToMatrix(list, elementsPerSubArray) {
+            var matrix = [], i, k;
+
+            for (i = 0, k = -1; i < list.length; i++) {
+                if (i % elementsPerSubArray === 0) {
+                    k++;
+                    matrix[k] = [];
+                }
+
+                matrix[k].push(list[i]);
+            }
+
+            return matrix;
+        }
+
+        //Inject Custom Service Created by us and Global service $filter. This is one way of specifying dependency Injection
+        var TableCtrl = myApp.controller('TableCtrl', function ($scope, $mdDialog, $document, $filter, filteredListService) {
+
+            //.controller('ExampleController', ['$scope', '$document', function ($scope, ) {
+
+            $scope.rowsPerPage = 3;
+            $scope.itemsPerRow = 3;
+            $scope.allItems = getDummyData();
+            $scope.reverse = false;
+
+            $scope.resetAll = function () {
+                $scope.filteredList = $scope.allItems;
+                $scope.newEmpId = '';
+                $scope.newName = '';
+                $scope.newEmail = '';
+                $scope.searchText = '';
+                $scope.currentPage = 0;
+                $scope.Header = ['', '', ''];
+            }
+
+            $scope.add = function () {
+                $scope.allItems.push({
+                    EmpId: $scope.newEmpId,
+                    name: $scope.newName,
+                    Email: $scope.newEmail
+                });
+                $scope.resetAll();
+            }
+
+            $scope.search = function () {
+                $scope.filteredList = filteredListService.searched($scope.allItems, $scope.searchText);
+
+                if ($scope.searchText == '') {
+                    $scope.filteredList = $scope.allItems;
+                }
+                $scope.pagination();
+            }
+
+            // Calculate Total Number of Pages based on Search Result
+            $scope.pagination = function () {
+                $scope.ItemsByPage = filteredListService.paged($scope.filteredList, $scope.rowsPerPage, $scope.itemsPerRow);
+            };
+
+            $scope.setPage = function () {
+                $scope.currentPage = this.n;
+            };
+
+            $scope.firstPage = function () {
+                $scope.currentPage = 0;
+            };
+
+            $scope.lastPage = function () {
+                $scope.currentPage = $scope.ItemsByPage.length - 1;
+            };
+
+            $scope.previousPage = function () {
+                $scope.currentPage = $scope.currentPage - 1;
+            };
+            $scope.nextPage = function () {
+                $scope.currentPage = $scope.currentPage + 1;
+            };
+
+
+            $scope.range = function (input, total) {
+                var ret = [];
+                if (!total) {
+                    total = input;
+                    input = 0;
+                }
+                for (var i = input; i < total; i++) {
+                    if (i != 0 && i != total - 1) {
+                        ret.push(i);
+                    }
+                }
+                return ret;
+            };
+
+            $scope.sort = function (sortBy) {
+                $scope.resetAll();
+
+                $scope.columnToOrder = sortBy;
+
+                //$Filter - Standard Service
+                $scope.filteredList = $filter('orderBy')($scope.filteredList, $scope.columnToOrder, $scope.reverse);
+
+                if ($scope.reverse) iconName = 'glyphicon glyphicon-chevron-up';
+                else iconName = 'glyphicon glyphicon-chevron-down';
+
+                if (sortBy === 'EmpId') {
+                    $scope.Header[0] = iconName;
+                } else if (sortBy === 'name') {
+                    $scope.Header[1] = iconName;
+                } else {
+                    $scope.Header[2] = iconName;
+                }
+
+                $scope.reverse = !$scope.reverse;
+
+                $scope.pagination();
+            };
+
+            //By Default sort ny Name
+            $scope.sort('name');
+
+            // Picture click event
+            $scope.onPicClick = function (event) {
+                alert($(event.target).attr("height"));
+            }
+
+
+            $scope.showAdvanced = function (ev) {
+                $mdDialog.show({
+                    controller: DialogController,
+                    templateUrl: 'dialog1.tmpl.html',
+                    parent: angular.element(document.body),
+                    targetEvent: ev,
+                    clickOutsideToClose: true,
+                    fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+                })
+
+            };
+
+
+
+            function DialogController($scope, $mdDialog, filteredListService) {
+                $scope.hide = function () {
+                    $mdDialog.hide();
+                };
+
+                $scope.cancel = function () {
+                    $mdDialog.cancel();
+                };
+
+                $scope.answer = function (answer) {
+                    $mdDialog.hide(answer);
+                };
+                $scope.rowsPerPage = 1;
+                $scope.itemsPerRow = 2;
+                $scope.allItems = getDummyDataChildOne();
+                $scope.reverse = false;
+
+                $scope.resetAll = function () {
+                    $scope.filteredList = $scope.allItems;
+                    $scope.newEmpId = '';
+                    $scope.newName = '';
+                    $scope.newEmail = '';
+                    $scope.searchText = '';
+                    $scope.currentPage = 0;
+                    $scope.Header = ['', '', ''];
+                }
+
+                $scope.add = function () {
+                    $scope.allItems.push({
+                        EmpId: $scope.newEmpId,
+                        name: $scope.newName,
+                        Email: $scope.newEmail
+                    });
+                    $scope.resetAll();
+                }
+
+                $scope.search = function () {
+                    $scope.filteredList = filteredListService.searched($scope.allItems, $scope.searchText);
+
+                    if ($scope.searchText == '') {
+                        $scope.filteredList = $scope.allItems;
+                    }
+                    $scope.pagination();
+                }
+
+                // Calculate Total Number of Pages based on Search Result
+                $scope.pagination = function () {
+                    $scope.ItemsByPage = filteredListService.paged($scope.filteredList, $scope.rowsPerPage, $scope.itemsPerRow);
+                };
+
+                $scope.setPage = function () {
+                    $scope.currentPage = this.n;
+                };
+
+                $scope.firstPage = function () {
+                    $scope.currentPage = 0;
+                };
+
+                $scope.lastPage = function () {
+                    $scope.currentPage = $scope.ItemsByPage.length - 1;
+                };
+
+                $scope.previousPage = function () {
+                    $scope.currentPage = $scope.currentPage - 1;
+                };
+                $scope.nextPage = function () {
+                    $scope.currentPage = $scope.currentPage + 1;
+                };
+
+
+                $scope.range = function (input, total) {
+                    var ret = [];
+                    if (!total) {
+                        total = input;
+                        input = 0;
+                    }
+                    for (var i = input; i < total; i++) {
+                        if (i != 0 && i != total - 1) {
+                            ret.push(i);
+                        }
+                    }
+                    return ret;
+                };
+
+                $scope.sort = function () {
+                    $scope.resetAll();
+
+
+                    //$Filter - Standard Service
+                    $scope.filteredList = $filter('orderBy')($scope.filteredList, $scope.columnToOrder, $scope.reverse);
+
+
+
+                    $scope.pagination();
+                };
+
+                //By Default sort ny Name
+                $scope.sort();
+
+                // Picture click event
+                $scope.onPicClick = function (event) {
+                    alert($(event.target).attr("height"));
+                }
+            }
+
+        });
+
+        function searchUtil(item, toSearch) {
+            /* Search Text in all 3 fields */
+            return (item.name.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 || item.Email.toLowerCase().indexOf(toSearch.toLowerCase()) > -1 || item.EmpId == toSearch) ? true : false;
+        }
+
+
+        /*Get Dummy Data for Example*/
+        function getDummyData() {
+            return [{
+                ProductPictureUrl: 'http://s3.amazonaws.com/digitaltrends-uploads-prod/2016/01/News-Apps-Header.jpg'
+                , ProductName: 'Name 101'
+                , ProductSize: '1'
+                , ProductPrice: '1001'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://images.all-free-download.com/images/graphiclarge/water_waterfall_nature_214751.jpg'
+                , ProductName: 'Name 102'
+                , ProductSize: '2'
+                , ProductPrice: '1002'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://images.all-free-download.com/images/graphiclarge/beautiful_nature_landscape_05_hd_picture_166223.jpg'
+                , ProductName: 'Name 103'
+                , ProductSize: '3'
+                , ProductPrice: '1003'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://images.all-free-download.com/images/graphiclarge/beautiful_nature_landscape_02_hd_picture_166206.jpg'
+                , ProductName: 'Name 104'
+                , ProductSize: '4'
+                , ProductPrice: '1004'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://images.all-free-download.com/images/graphiclarge/new_jersey_spring_nature_215447.jpg'
+                , ProductName: 'Name 105'
+                , ProductSize: '5'
+                , ProductPrice: '1005'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'https://ae01.alicdn.com/kf/HTB17RHwMXXXXXcfXpXXq6xXFXXXq/2016-newest-Ariel-princess-Hello-Kitty-Summer-cloth-Girl-s-Clothing-2pcs-Set.jpg',
+                ProductName: 'Name 106',
+                ProductSize: '6',
+                ProductPrice: '1006'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://moziru.com/images/falling-clipart-clothes-for-kid-20.jpg',
+                ProductName: 'Name 107',
+                ProductSize: '7',
+                ProductPrice: '1007'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'https://sg-live-02.slatic.net/p/7/shoes-tide-shoes-korean-style-youth-sports-casual-flat-shoes-mencanvas-shoes-men-summer-new-style-lace-breathable-cloth-ouma-42-blue-1496829613-22531392-fc60cd5b7830a89191c0dd2fa7a8eedb-product.jpg',
+                ProductName: 'Name 108',
+                ProductSize: '8',
+                ProductPrice: '1008'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://images.all-free-download.com/images/graphiclarge/canoe_water_nature_221611.jpg',
+                ProductName: 'Name 109',
+                ProductSize: '9',
+                ProductPrice: '1009'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'https://lh3.googleusercontent.com/iKEdGSVTh06yriQ3o6vrW_nn-SMF8yxFMXZ0Hem32hMkt2Jxg89pnbf9BFgB9YaYj0o=h310',
+                ProductName: 'Name 110',
+                ProductSize: '10',
+                ProductPrice: '1010'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://mediad.publicbroadcasting.net/p/radiowest/files/styles/x_large/public/201611/lost_art_natural_navigation.jpg',
+                ProductName: 'Name 111',
+                ProductSize: '11',
+                ProductPrice: '1011'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://www.indiacelebrating.com/wp-content/uploads/Natural-resources.jpg',
+                ProductName: 'Name 112',
+                ProductSize: '12',
+                ProductPrice: '1012'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://healthcrunch360.com/wp-content/uploads/natural-health.jpeg',
+                ProductName: 'Name 113',
+                ProductSize: '13',
+                ProductPrice: '1013'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://www.knowmycotoxins.com/sites/default/files/images/pets.jpg',
+                ProductName: 'Name 114',
+                ProductSize: '14',
+                ProductPrice: '1014'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://r.ddmcdn.com/s_f/o_1/cx_0/cy_934/cw_1406/ch_1406/w_720/APL/uploads/2014/12/pets-dogs.jpg',
+                ProductName: 'Name 115',
+                ProductSize: '15',
+                ProductPrice: '1015'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'https://images-na.ssl-images-amazon.com/images/G/15/img16/pet-products/content-grid/981163_CA_pets_cg_fish_1340x762_EN.jpg',
+                ProductName: 'Test 116',
+                ProductSize: '16',
+                ProductPrice: '1016'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'https://auto.ndtvimg.com/car-images/medium/tata/tiago/tata-tiago.jpg?v=40',
+                ProductName: 'Test 117',
+                ProductSize: '17',
+                ProductPrice: '1017'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'https://carsales.li.csnstatic.com/carsales/general/editorial/171016_Hyundai_Tucson_Highlander_01.jpg?aspect=centered&height=400&width=620',
+                ProductName: 'Test 118',
+                ProductSize: '18',
+                ProductPrice: '1018'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://d1arsn5g9mfrlq.cloudfront.net/sites/default/files/2014_toyota_corolla_l_005_720_4.jpg',
+                ProductName: 'Test 119',
+                ProductSize: '19',
+                ProductPrice: '1019'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://www.topgear.com/india/images/stories/tata%20zica%20web%20review%203.jpg',
+                ProductName: 'Test 120',
+                ProductSize: '20',
+                ProductPrice: '1020'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://4.bp.blogspot.com/-x4-8N8qFBWo/TiEo7qRXHoI/AAAAAAAAClE/KCtqny6x0WI/s1600/swift+car+rental-2.jpg',
+                ProductName: 'Test 121',
+                ProductSize: '21',
+                ProductPrice: '1021'
+                , IsFirstItemOfRow: false
+            }];
+        }
+
+        function getDummyDataChildOne() {
+            return [{
+                ProductPictureUrl: 'http://s3.amazonaws.com/digitaltrends-uploads-prod/2016/01/News-Apps-Header.jpg'
+                , ProductName: 'Name 101'
+                , ProductSize: '1'
+                , ProductPrice: '1001'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://images.all-free-download.com/images/graphiclarge/water_waterfall_nature_214751.jpg'
+                , ProductName: 'Name 102'
+                , ProductSize: '2'
+                , ProductPrice: '1002'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://images.all-free-download.com/images/graphiclarge/beautiful_nature_landscape_05_hd_picture_166223.jpg'
+                , ProductName: 'Name 103'
+                , ProductSize: '3'
+                , ProductPrice: '1003'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://images.all-free-download.com/images/graphiclarge/beautiful_nature_landscape_02_hd_picture_166206.jpg'
+                , ProductName: 'Name 104'
+                , ProductSize: '4'
+                , ProductPrice: '1004'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'http://images.all-free-download.com/images/graphiclarge/new_jersey_spring_nature_215447.jpg'
+                , ProductName: 'Name 105'
+                , ProductSize: '5'
+                , ProductPrice: '1005'
+                , IsFirstItemOfRow: false
+            }, {
+                ProductPictureUrl: 'https://ae01.alicdn.com/kf/HTB17RHwMXXXXXcfXpXXq6xXFXXXq/2016-newest-Ariel-princess-Hello-Kitty-Summer-cloth-Girl-s-Clothing-2pcs-Set.jpg',
+                ProductName: 'Name 106',
+                ProductSize: '6',
+                ProductPrice: '1006'
+                , IsFirstItemOfRow: false
+            }];
+        }
+
+    </script>
+
+
+</head>
+
+<!--style="font-family:Verdana;color:#aaaaaa;"-->
+<body style="font-family:Verdana;color:#aaaaaa">
+
+    <div class="header">
+        <h1>Sarees Garden</h1>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+    <div class="leftsidecontent">
+        <div>
+            <div class="menuitem">
+                Link 1
+
+            </div>
+            <div class="menuitem">Link 2</div>
+            <div class="menuitem">Link 3</div>
+            <div class="menuitem">Link 4</div>
+            <div class="menuitem">Link 5</div>
+            <div class="menuitem">Link 6</div>
+            <div class="menuitem">Link 7</div>
+        </div>
+        <div class="leftsidecontent-about">
+            <h2>About</h2>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+        </div>
+
+        <div class="leftsidecontent-about">
+            <h2>Contact</h2>
+            <p>Bommuraja</p>
+            <p>South street</p></p>
+            <p>Viralimalai</p>
+            <p>Mobile : 9345617197</p>
+            <p>Mail : rbommuraja@outlook.com</p>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+    <div class="maincontent">
+
+        <div ng-app="myApp">
+            <div ng-controller="TableCtrl">
+                <table id="tblSaree" style="margin-top: 7px;" class="table  table-hover data-table myTable">
+                    <thead>
+                        <tr></tr>
+                    </thead>
+
+                    <tbody>
+                        <tr ng-repeat="item in ItemsByPage[currentPage] | orderBy:columnToOrder:reverse">
+                            <td class="letter-box" ng-repeat="itm in item">
+                                <img src="{{itm.ProductPictureUrl}}" alt="" data-ng-click="showAdvanced($event)" />
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ul class="pagination" style="float:right !important">
+                    <li ng-class="{active:0}">
+                        <a href="#" ng-click="previousPage()">Pre</a>
+
+                    </li>
+                    <li ng-class="{active:0}">
+                        <a href="#" ng-click="firstPage()">First</a>
+
+                    </li>
+                    <li ng-repeat="n in range(ItemsByPage.length)">
+                        <a href="#" ng-click="setPage()" ng-bind="n+1">1</a>
+
+                    </li>
+                    <li>
+                        <a href="#" ng-click="lastPage()">Last</a>
+
+                    </li>
+                    <li ng-class="{active:0}">
+                        <a href="#" ng-click="nextPage()">Next</a>
+
+                    </li>
+                </ul>
+                <script type="text/ng-template" id="dialog1.tmpl.html">
+                    <md-dialog aria-label="Mango (Fruit)">
+                        <form ng-cloak>
+                            <md-toolbar>
+                                <div class="md-toolbar-tools">
+                                    <h2>Mango (Fruit)</h2>
+                                    <span flex></span>
+                                    <md-button class="md-icon-button" ng-click="cancel()">
+                                        <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                                    </md-button>
+                                </div>
+                            </md-toolbar>
+
+                            <md-dialog-content>
+                                <div class="md-dialog-content">
+
+                                    <table id="tblSareesingle" class="table  table-hover data-table">
+                                        <thead>
+                                            <tr></tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr ng-repeat="item in ItemsByPage[currentPage]">
+                                                <td class="letter-box" ng-repeat="itm in item">
+                                                    <img src="{{itm.ProductPictureUrl}}" alt="" data-ng-click="showAdvanced($event)" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </md-dialog-content>
+
+                            <md-dialog-actions layout="row">
+                                <md-button target="_blank" md-autofocus>
+                                    <ul class="pagination" style="float:right !important">
+                                        <li ng-class="{active:0}">
+                                            <a href="#" ng-click="previousPage()">Pre</a>
+
+                                        </li>
+                                        <li ng-class="{active:0}">
+                                            <a href="#" ng-click="firstPage()">First</a>
+
+                                        </li>
+                                        <li ng-repeat="n in range(ItemsByPage.length)">
+                                            <a href="#" ng-click="setPage()" ng-bind="n+1">1</a>
+
+                                        </li>
+                                        <li>
+                                            <a href="#" ng-click="lastPage()">Last</a>
+
+                                        </li>
+                                        <li ng-class="{active:0}">
+                                            <a href="#" ng-click="nextPage()">Next</a>
+
+                                        </li>
+                                    </ul>
+                                </md-button>
+                                <span flex></span>
+                                <md-button ng-click="answer('not useful')">
+                                    Not Useful
+                                </md-button>
+                                <md-button ng-click="answer('useful')">
+                                    Useful
+                                </md-button>
+                            </md-dialog-actions>
+                        </form>
+                    </md-dialog>
+                </script>
+            </div>
+
+        </div>
     </div>
-</div>
+
+    <div class="footer">
+        © copyright w3schools.com
+    </div>
+
+
+</body>
+</html>
